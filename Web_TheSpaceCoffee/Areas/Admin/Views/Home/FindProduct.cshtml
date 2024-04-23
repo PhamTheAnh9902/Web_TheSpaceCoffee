@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Web_TheSpaceCoffee.Models.TbSanPham>
+
+@{
+    ViewData["Title"] = "FindProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1>Tìm Kiếm Sản Phẩm</h1>
+<div  class="table table-bordered"> 
+    <table class="table-danger">
+        <thead>
+            <tr>
+                <th>
+                    Tên Sản Phẩm
+                </th>
+                <th>
+                    Giá Bán
+                </th>
+                <th>
+                    Hình Ảnh
+                </th>
+                <th>
+                    Ghi Chú
+                </th>
+                <th>
+                    Mã Nhóm
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-warning">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td>
+                        <img src="@Url.Content("../Admin/images/"+item.HinhAnh)" alt=" Chua cap nhat" style="height:100px;width:100px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GhiChu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNhomSp)
+                    </td>
+                    <td>
+                        <button type="button" class="btn "> <a asp-action="EditProduct" asp-route-MaSanPham="@item.MaSanPham">Edit</a> </button>
+                        <button type="button" class="btn "> <a asp-action="Delete" asp-route-MaSanPham="@item.MaSanPham">Delete</a> </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<div>
+    <a asp-action="Product" class="btn btn-success rounded-pill">Quay lại danh sách</a>
+</div>
+

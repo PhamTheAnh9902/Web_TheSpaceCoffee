@@ -1,0 +1,71 @@
+﻿@using Web_TheSpaceCoffee.Models;
+@using X.PagedList.Mvc.Core;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<TbSanPham>
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+@using (Html.BeginForm("FindProduct", "Home", FormMethod.Get))
+{
+    <form class=" d-none d-md-block m-2 p-2">
+        @Html.TextBox("search", null, new { @class = "w-75 form-control-sm  border-0" })
+        <button type="submit" class="btn btn-success rounded-pill">Tìm Kiếm   </button>
+    </form>
+
+}
+<h1>Danh sách sản phẩm</h1>
+<p>@TempData["msg"]</p>
+<div class="table table-bordered">
+
+    <table class="table-danger">
+        <thead>
+            <tr>
+                <th>
+                    Mã sản phẩm
+                </th>
+                <th>
+                    Tên sản phẩm
+                </th>
+                <th>
+                    Gía bán
+                </th>
+                <th>
+                    Mã nhóm SP
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-warning">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNhomSp)
+                    </td>
+                    <td>
+                        <button type="button" class="btn  "> <a asp-action="EditProduct" asp-route-MaSanPham="@item.MaSanPham">Edit</a> </button>
+                        <button type="button" class="btn  "> <a asp-action="DeleteProduct" asp-route-MaSanPham="@item.MaSanPham">Delete</a> </button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Product", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+{
+            LiElementClasses = new List<String> { "bg-secondary page-item" },
+            PageClasses = new List<String> { "page-link" }
+        })
+

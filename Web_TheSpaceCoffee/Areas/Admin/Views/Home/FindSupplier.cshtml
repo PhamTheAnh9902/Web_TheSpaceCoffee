@@ -1,0 +1,70 @@
+﻿@using Web_TheSpaceCoffee.Models;
+@using X.PagedList.Mvc.Core;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<TbNhaCungCap>
+@{
+    ViewData["Title"] = "FindSupplier";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1>Danh sách tìm kiếm nhà cung cấp</h1>
+<div class="table table-bordered">
+
+    <table class="table-danger">
+        <thead>
+            <tr>
+                <th>
+                    Mã nhà cung cấp
+                </th>
+                <th>
+                    Tên nhà cung cấp
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-warning">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNhaCungCap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNhaCungCap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        <button type="button" class="btn  "> <a asp-action="EditSupplier" asp-route-MaNhaCungCap="@item.MaNhaCungCap">Edit</a> </button>
+                        <button type="button" class="btn  "> <a asp-action="DeleteSupplier" asp-route-MaNhaCungCap="@item.MaNhaCungCap">Delete</a> </button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Supplier ", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+{
+            LiElementClasses = new List<String> { "bg-secondary page-item" },
+            PageClasses = new List<String> { "page-link" }
+        })
+
+

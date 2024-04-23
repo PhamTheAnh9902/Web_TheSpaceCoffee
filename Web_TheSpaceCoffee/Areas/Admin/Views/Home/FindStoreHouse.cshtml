@@ -1,0 +1,60 @@
+﻿@using Web_TheSpaceCoffee.Models;
+@using X.PagedList.Mvc.Core;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<TbKhoVatTuCh>
+@{
+    ViewData["Title"] = "FindStoreHouse";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1>Tìm Kiếm Vật Tư Trong Cửa Hàng</h1>
+<p>
+    <a asp-controller="admin" asp-action="StoreHouse">Quay lại</a>
+</p>
+<div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-danger">
+                <th>
+                    Cửa Hàng
+                </th>
+                <th>
+                    Mã Vật Tư
+                </th>
+                <th>
+                    Số Lượng
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-warning">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaCuaHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaVatTu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+                    <td>
+                        <a asp-action="suasanpham" , asp-route-maSanPham="@item.MaCuaHang">Edit</a>|
+                        <a asp-action="suasanpham" , asp-route-maSanPham="@item.MaCuaHang">Details</a>|
+                        <a asp-action="xoasanpham" , asp-route-maSanPham="@item.MaCuaHang">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("FindStoreHouse", new { page = page, searchNameStoreHouse = ViewBag.SearchName }), new X.PagedList.Web.Common.PagedListRenderOptions()
+{
+            LiElementClasses = new List<String> { "bg-secondary page-item" },
+            PageClasses = new List<String> { "page-link" }
+        })

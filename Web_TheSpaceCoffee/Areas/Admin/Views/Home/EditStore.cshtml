@@ -1,0 +1,53 @@
+﻿@model Web_TheSpaceCoffee.Models.TbCuaHang
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "EditStore";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1>Sửa thông tin cửa hàng</h1>
+
+<h4>Cửa hàng muốn sửa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditStore">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MaCuaHang" />
+            <div class="form-group">
+                <label asp-for="TenCuaHang" class="control-label"></label>
+                <input asp-for="TenCuaHang" class="form-control" />
+                <span asp-validation-for="TenCuaHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoDienThoai" class="control-label"></label>
+                <input asp-for="SoDienThoai" class="form-control" />
+                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChi" class="control-label"></label>
+                <input asp-for="DiaChi" class="form-control" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fanpage" class="control-label"></label>
+                <input asp-for="Fanpage" class="form-control" />
+                <span asp-validation-for="Fanpage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=" Hoàn Thành" class="btn btn-success rounded-pill" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Store" class="btn btn-success rounded-pill">Quay lại danh sách</a>
+</div>
+
+

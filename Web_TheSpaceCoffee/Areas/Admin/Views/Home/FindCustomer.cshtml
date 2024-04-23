@@ -1,0 +1,76 @@
+﻿@using Web_TheSpaceCoffee.Models;
+@using X.PagedList.Mvc.Core;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<TbKhachHang>
+@{
+    ViewData["Title"] = "FindCustomer";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1>Danh sách tìm kiếm Khách hàng</h1>
+<div class="table table-bordered">
+
+    <table class="table-danger">
+        <thead>
+            <tr>
+                <th>
+                    Mã khách hàng
+                </th>
+                <th>
+                    Tên khách hàng
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Điểm
+                </th>
+                <th>
+                    Hạng
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-warning">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaKhachHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenKhachHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Diem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hang)
+                    </td>
+                    <td>
+                        <button type="button" class="btn  "> <a asp-action="EditCustomer" asp-route-MaKhachHang="@item.MaKhachHang">Edit</a> </button>
+                        <button type="button" class="btn  "> <a asp-action="DeleteCustomer" asp-route-MaKhachHang="@item.MaKhachHang">Delete</a> </button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Customer", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+{
+            LiElementClasses = new List<String> { "bg-secondary page-item" },
+            PageClasses = new List<String> { "page-link" }
+        })
+
+

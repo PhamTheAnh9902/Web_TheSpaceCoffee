@@ -1,0 +1,78 @@
+﻿@using Web_TheSpaceCoffee.Models;
+@using X.PagedList.Mvc.Core;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<TbCuaHang>
+@{
+    ViewData["Title"] = "FindStore";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1>Danh sách tìm kiếm cửa hàng</h1>
+<div class="table table-bordered">
+
+    <table class="table-danger">
+        <thead>
+            <tr>
+                <th>
+                    Mã Cửa Hàng
+                </th>
+                <th>
+                    Tên Cửa Hàng
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th>
+                    Số Điện Thoại
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Fanpage
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-warning">
+                    <td>
+                        @item.MaCuaHang
+                    </td>
+                    <td>
+                        @item.TenCuaHang
+                    </td>
+                    <td>
+                        @item.DiaChi
+                    </td>
+                    <td>
+                        @item.SoDienThoai
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Fanpage
+                    </td>
+                    <td>
+                        <a asp-action="EditStore" , asp-route-MaCuaHang="@item.MaCuaHang">Edit</a>|
+                        <a asp-action="DeleteStore" , asp-route-MaCuaHang="@item.MaCuaHang">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("FindStore", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+{
+            LiElementClasses = new List<String> { "bg-secondary page-item" },
+            PageClasses = new List<String> { "page-link" }
+        })
+<div>
+    <a asp-action="Store" class="btn btn-success rounded-pill">Quay lại danh sách</a>
+</div>
+

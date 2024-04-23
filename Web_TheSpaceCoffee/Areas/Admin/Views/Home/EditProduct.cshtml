@@ -1,0 +1,54 @@
+﻿@model Web_TheSpaceCoffee.Models.TbSanPham
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "EditProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1 class=" text-black">Sửa Sản Phẩm</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" asp-action="EditProduct">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group ">
+                <label asp-for="MaSanPham" class="control-label text-black">Mã Sản Phẩm</label>
+                <input asp-for="MaSanPham" class="form-control " />
+                <span asp-validation-for="MaSanPham" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="TenSanPham" class="control-label text-black">Tên Sản Phẩm</label>
+                <input asp-for="TenSanPham" class=" form-control" />
+                <span asp-validation-for="TenSanPham" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="GiaBan" class="control-label text-black">Giá Bán</label>
+                <input asp-for="GiaBan" class=" form-control" />
+                <span asp-validation-for="GiaBan" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="HinhAnh" class="control-label text-black"> Hình Ảnh</label>
+                <input type="file" name="imageFile" asp-for="HinhAnh" class=" form-control" />
+                <span asp-validation-for="HinhAnh" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="GhiChu" class=" control-label text-black">Ghi Chú</label>
+                <input asp-for="GhiChu" class=" form-control" />
+                <span asp-validation-for="GhiChu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaNhomSp" class="control-label text-black">Mã Nhóm Sản Phẩm</label>
+                <select asp-for="MaNhomSp" class=" form-control" asp-items="ViewBag.MaNhomSp"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=" Hoàn Thành" class="btn btn-success rounded-pill" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Product" class="btn btn-success rounded-pill">Quay lại danh sách</a>
+</div>
+
+

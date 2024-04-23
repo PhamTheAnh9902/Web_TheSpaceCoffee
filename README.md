@@ -32,14 +32,4 @@ W3Schools: https://www.w3schools.com
 
 Microsoft: https://learn.microsoft.com/vi-vn/docs
 
-## Thành viên
-Nhóm 04 - CNTT5 - K61
 
-  * 201200025
-  * 201200218
-  * 201200181
-  * 201200304
-  * 201210386
-  * 201200415
-  
-#### 2023. Đại học Giao thông Vận tải
